@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract TOPG {
+    uint256 public currentMoney$;
+    string public makenewMessageG;
+    address public contractDawg;
+
+    modifier onlyContractDawg() {
+        require(msg.sender == contractDawg, "Caller is not the Real Dawg");
+        _;
+    }
+
+    constructor() {
+        contractDawg = msg.sender;
+    }
+
+    function CashMoney$(uint256 amount) external onlyContractDawg {
+        // Using require() to validate input
+        require(amount > 0, "Yo dawg you must be broke ahhhh");
+        
+        // Using assert() to validate internal state
+        assert(currentMoney$ + amount > currentMoney$);
+
+        // Using revert() to revert the transaction if a condition is met
+        if (amount > 10000) {
+            revert("Yo dawg you're not that rich, let's go and change it with a lower one");
+        }
+
+        currentMoney$ = amount;
+    }
+
+    function modifyMessage(string calldata newMessage) external onlyContractDawg {
+        // Using require() to validate input
+        require(bytes(newMessage).length > 0, "Type some message dawg, don't give me an empty message");
+
+        makenewMessageG = newMessage;
+    }
+
+    function clearBalance() external onlyContractDawg {
+        currentMoney$ = 0;
+    }
+
+    function changeLeaderdawg(address newContractDawg) external onlyContractDawg {
+        require(newContractDawg != address(0), "New Dawg is the zero address");
+
+        // Using revert() to revert the transaction if the new dawg is the same as the current dawg
+        if (newContractDawg == contractDawg) {
+            revert("New dawg must be different from the current dawg");
+        }
+
+        contractDawg = newContractDawg;
+    }
+}
+
